@@ -1,0 +1,16 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Cython debug symbols
+cython_debug/
+
+# editor files
+.vscode/
+
+# old test files
+_*.py
