@@ -48,18 +48,25 @@ class StreamCipher:
     self.charmap = map_tokens(self.charset, _min, _max)
   
   def check_xmit (self, i):
-    '''incomplete, test later'''
+    '''
+    probabilistically checks if cipher should use current iteration count as
+    cipherchar or if it should keep iterating until it's in the correct interval again
+    
+    generates random number rv from normal distribution truncated to [0,1]
+    and checks if rv >= class var xmit_coeff
+    if so, iteration count is used as cipherchar
+    '''
     l,u = 0,1
     mu,sigma = 0.0,1.0
-    a,b = (l - mu)/sigma, (u-mu)/sigma
+    a,b = (l - mu)/sigma, (u-mu)/sigma  # a,b are endpoints of [0,1]
     rv = truncnorm.rvs(a,b)
 
-    if rv < self.xmit_coefff:
-      return False
-    elif i < 60:
-      return False
-    return True
-    #return False if rv < self.xmit_coefff else True
+    # if rv < self.xmit_coeff:
+    #   return False
+    # elif i < 60:
+    #   return False
+    # return True
+    return False if rv < self.xmit_coeff else True
 
   def gen_cipherchar (self, char, prev_x = -1):
     '''generate ciphertext character (number of iterations to get from
@@ -80,8 +87,8 @@ class StreamCipher:
       x = logisticmap(self.r, x)
       i += 1
       if (x >= ivl[0] and x < ivl[1]):
-        # xmit = self.check_xmit(i)
-        xmit = True
+        xmit = self.check_xmit(i)
+        # xmit = True
     
     return i, x
   
