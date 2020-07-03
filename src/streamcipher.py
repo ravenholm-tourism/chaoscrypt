@@ -4,6 +4,7 @@ from chaosmaps import logisticmap
 
 
 def map_tokens (tokens, invl_min, invl_max):
+  '''maps tokens to intervals in the order they are stored in the tokens array'''
   eps = (invl_max - invl_min)/len(tokens)
   token_map = {}
 
