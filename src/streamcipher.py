@@ -50,7 +50,8 @@ class StreamCipher:
   def check_xmit (self, i):
     '''
     probabilistically checks if cipher should use current iteration count as
-    cipherchar or if it should keep iterating until it's in the correct interval again
+    cipherchar or if it should keep iterating until it's in the correct interval
+    again
     
     generates random number rv from normal distribution truncated to [0,1]
     and checks if rv >= class var xmit_coeff
@@ -61,12 +62,8 @@ class StreamCipher:
     a,b = (l - mu)/sigma, (u-mu)/sigma  # a,b are endpoints of [0,1]
     rv = truncnorm.rvs(a,b)
 
-    # if rv < self.xmit_coeff:
-    #   return False
-    # elif i < 60:
-    #   return False
-    # return True
-    return False if rv < self.xmit_coeff else True
+    # max of 60 xmit misses (update based on invariant density of map used)
+    return False if (rv < self.xmit_coeff) and (i <= 60) else True
 
   def gen_cipherchar (self, char, prev_x = -1):
     '''generate ciphertext character (number of iterations to get from
