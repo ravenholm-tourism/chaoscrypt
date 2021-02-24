@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.stats import truncnorm
 from src.chaosmaps import logisticmap
+# from chaosmaps import logisticmap
 
 
 def map_tokens (tokens, invl_min, invl_max):
@@ -93,6 +94,7 @@ class StreamCipher:
   def gen_ciphertext (self, plaintext = ''):
     i,x = 0, 0
     xvals = []
+    ciphertext = []
 
     # if len(plaintext) != 0:  self.plaintext = plaintext
 
@@ -100,14 +102,17 @@ class StreamCipher:
       #TODO: repeated chars in plaintext have 0 cipherchar
       if len(xvals) == 0:
         i, x = self.gen_cipherchar(c)
-        self.ciphertext.append(i)
+        # self.ciphertext.append(i)
+        ciphertext.append(i)
         xvals.append(x)
       else:
         i, x = self.gen_cipherchar(c, xvals[-1])
-        self.ciphertext.append(i)
+        # self.ciphertext.append(i)
+        ciphertext.append(i)
         xvals.append(x)
 
-    return self.ciphertext, xvals
+    # return self.ciphertext, xvals
+    return ciphertext, xvals
       
 
 

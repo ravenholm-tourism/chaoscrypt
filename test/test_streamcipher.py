@@ -1,7 +1,7 @@
 from src import streamcipher as sc
 import pytest
 
-@pytest.mark.skip()
+# @pytest.mark.skip()
 def test_ciphertext():
   alphabet = [chr(_) for _ in range(256)]       # 256 char ascii
   x_0 = 232323e-6         # initial starting point in interval
@@ -26,12 +26,13 @@ def test_ciphertext():
   #   print(ciphertext)
   assert ciphertext == [2077,5]
 
+
 def test_ciphertext_xmit():
   alphabet = [chr(_) for _ in range(256)]       # 256 char ascii
   x_0 = 232323e-6         # initial starting point in interval
   lim = 65532             # ~2^16 or short int
   trans_time = 250        # first ciphertext iteration value must be > than this (lyapunov time)
-  trans_coeff2 = .2        # for character i, transmit if random number in [0,1] >= .2 (~76% chance each try will succeed)
+  trans_coeff2 = .5        # for character i, transmit if random number in [0,1] >= .2 (~76% chance each try will succeed)
   control_param = 3.8     # parameter for logistic map - alternate chaotic values: 3.56995, 3.82843 (most values between 3.57 and 4 work)
   plaintext = 'hi'
 
@@ -47,6 +48,6 @@ def test_ciphertext_xmit():
   # print(cipher_state)
   ciphertext2 = cipher_state2[0]
   #   print(ciphertext)
-  assert ciphertext2 == [2077,5]
+  assert ciphertext2[0] >= 2077 and ciphertext2[1] >= 5
 
 
