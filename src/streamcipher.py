@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.stats import truncnorm
-from chaosmaps import logisticmap
+from src.chaosmaps import logisticmap
 
 
 def map_tokens (tokens, invl_min, invl_max):
