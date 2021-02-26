@@ -1,5 +1,4 @@
 from src.chaosmaps import logisticmap
-# from chaosmaps import logisticmap
 
 class PlainText:
   ivl = [.2, .8]

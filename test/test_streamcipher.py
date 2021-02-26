@@ -42,12 +42,8 @@ def test_ciphertext_xmit():
   streamcipher.set_init_val(x_0)
   streamcipher.gen_charmap()
 
-  # print(streamcipher.get_key())
-
   cipher_state2 = streamcipher.gen_ciphertext(plaintext)
-  # print(cipher_state)
   ciphertext2 = cipher_state2[0]
-  #   print(ciphertext)
   assert ciphertext2[0] >= 2077 and ciphertext2[1] >= 5
 
 
