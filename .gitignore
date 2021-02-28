@@ -2,9 +2,12 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.ipynb_checkpoints/
+.pytest_cache/
 
 # env files
 env/
+old_tests/
 
 # C extensions
 *.so
@@ -17,3 +20,4 @@ cython_debug/
 
 # old test files
 _*.py
+
