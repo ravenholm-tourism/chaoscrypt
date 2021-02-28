@@ -1,6 +1,6 @@
 # Stream Cipher using [Chaotic Cryptography](https://en.wikipedia.org/wiki/Chaotic_cryptology)
 
-##__Note this is *not* a secure cryptosystem and is vulnerable to [several](https://arxiv.org/abs/cs/0402004) [attacks](http://hdl.handle.net/20.500.11929/sdsu:2476)__
+## __Note this is *not* a secure cryptosystem and is vulnerable to [several](https://arxiv.org/abs/cs/0402004) [attacks](http://hdl.handle.net/20.500.11929/sdsu:2476)__
 
 Implementation of a stream cipher described by baptista [in this paper](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.476.9974&rep=rep1&type=pdf).  The primary purpose of this project is to explore and investigate the properties of cryptosystems that use chaotic maps.  The current implementation uses the Logistic Map, but I hope to include other well-known one dimensional maps (Tent Map, Dyadic Map, Circle Map) and higher dimensional ones (Complex Quadratic Map, Arnold's Cat Map, Rössler system, Lorentz Equations).
 
