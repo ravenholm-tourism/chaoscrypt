@@ -1,16 +1,23 @@
 # Stream Cipher using [Chaotic Cryptography](https://en.wikipedia.org/wiki/Chaotic_cryptology)
 
-Implementation of a stream cipher described by baptista [in this paper](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.476.9974&rep=rep1&type=pdf).
-Note this is not a secure cryptosystem and is vulnerable to many attacks.  The primary purpose of this project is to understand and investigate properties of cryptography using chaotic maps.  Current implementation uses the Logistic Map, but hope to include other well-known one dimensional chaotic maps (Tent Map, Dyadic Map, Circle Map) and higher dimensional ones (Complex Quadratic Map, Arnold's Cat Map, Rössler system, Lorentz Equations).
+##__\*\*Note this is *not* a secure cryptosystem and is vulnerable to [several](https://arxiv.org/abs/cs/0402004) [attacks](http://hdl.handle.net/20.500.11929/sdsu:2476)\*\*__
 
-## encryption parameters
-* initial value x_0
-* logistic map control parameter r - from equation x_n+1 = r * x_n * (1 - x_n)
-* alphabet A = {a_1,a_2, ..., a_n} - uses ASCII 256 by default
-* map of chars in A to intervals in [.2,.8]   a_i -> [s_i, s_i+1)
-* transient time N_0 - basically lyapunov time to ensure sufficient divergence of paths with close initial values
-* eta - controls stochastic transmission; it determines which orbit in chars's interval to use.  Each iteration as a prob of 1 - normaldistcdf(eta) to be chosen as ciphertext (note if eta=0 then 1st iteration that enters interval is used)
-* plaintext stream with chars in A
+Implementation of a stream cipher described by baptista [in this paper](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.476.9974&rep=rep1&type=pdf).  The primary purpose of this project is to explore and investigate the properties of cryptosystems that use chaotic maps.  The current implementation uses the Logistic Map, but I hope to include other well-known one dimensional maps (Tent Map, Dyadic Map, Circle Map) and higher dimensional ones (Complex Quadratic Map, Arnold's Cat Map, Rössler system, Lorentz Equations).
+
+## Encryption Parameters
+* initial position to begin iterating from __x<sub>0</sub>__
+* the logistic map's control parameter __r__
+  * From the logistic map equation x<sub>n+1</sub> = __r__ * x<sub>n</sub> * (1 - x<sub>n</sub>)
+  * Controls whether or not the function is chaotic (defaults to known chaotic value 3.8)
+* A list of characters __A__ that your message is written with (its alphabet)
+  * uses ASCII 256 by default
+* A mapping __S__ that maps each character in __A__ to a sub-interval of [.2, .8]
+  * For example "h" &rightarrow; (0.44375000000000, 0.44609375000000]
+* Transient time __N<sub>0</sub>__ - the number of initial iterations to ignore so that close initial positions have sufficient time to  diverge
+  * This is essentially the Lyapunov Time of the chaotic system
+* __&eta;__ determines which orbit that lands in a character's interval to use.  Each iteration that lands in the interval has a probability of __P__ = 1 - normaldistcdf(&eta;) to be chosen as the interation number for that character's ciphertext
+  * note: if &eta;=0 then the first iteration to enter the interval is used
+* __msg__ plaintext message with characters in __A__
 
 ## ciphertext
 * sequence of 16-bit unsigned ints (number of iterations to get to interval mapped to plaintext char)
