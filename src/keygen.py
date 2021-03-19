@@ -1,6 +1,4 @@
 import random
-# import secrets
-import string
 
 class KeyGenerator:
   x0 = None
@@ -24,5 +22,5 @@ class KeyGenerator:
       self.charmap = random.SystemRandom().sample(alphabet, len(alphabet))
   
   def get_key(self):
-    return {'x0':self.x0, 'ctrl_param':self.ctrl_param, 'charmap':self.charmap}
+    return {'x0': self.x0, 'ctrl_param': self.ctrl_param, 'charmap': self.charmap}
       

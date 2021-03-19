@@ -6,11 +6,12 @@ import argparse
 
 def main(argv):
   parser = argparse.ArgumentParser()
-  parser.add_argument("x0", type=float, help="initial position of iterator value - should be between .2 and .8")
-  parser.add_argument("b", type=float, help="control parameter for dynamical system - determines if behavior is chaotic or not")
-  parser.add_argument("text", type=str, help="plaintext message to encrypt")
+  parser.add_argument("-x0", type=float, help="initial position of iterator value - should be between .2 and .8")
+  parser.add_argument("-b", type=float, help="control parameter for dynamical system - determines if behavior is chaotic or not")
+  parser.add_argument("-text", type=str, help="plaintext message to encrypt")
   parser.add_argument("--xmit", type=float, help="coefficient to determine probability of transmission. Value in [0,1]; 0 means transmission guaranteed on first try")
   # parser.add_argument("-d", help="use default dictionary, which is extended ASCII chars (256 chars) mapped to the interval [.2,.8]", action="store_true")
+  parser.add_argument("--generate-key", type=None, help="generate a new key")
   args = parser.parse_args(argv)
 
   x0 = args.x0

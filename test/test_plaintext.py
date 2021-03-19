@@ -8,5 +8,4 @@ def test_plaintext():
     ciphertext = [2077, 5]
     plaintext = pt.PlainText(key)
     msg = plaintext.decrypt_ciphertext(ciphertext)
-    # print(msg)
     assert msg == 'hi'
