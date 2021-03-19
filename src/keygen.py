@@ -3,15 +3,15 @@ import random
 import string
 
 class KeyGenerator:
-  x_init = None
+  x0 = None
   ctrl_param = 0e0
   charmap = []
 
   def __init__(self, key={}):
-    if not 'x_init' in key:
+    if not 'x0' in key:
       # generate random starting value
       secure_random = random.SystemRandom()
-      self.x_init = secure_random.uniform(.2, .8)
+      self.x0 = secure_random.uniform(.2, .8)
     
     if not 'ctrl_param' in key:
       # use known chaotic value
@@ -24,5 +24,5 @@ class KeyGenerator:
       self.charmap = random.SystemRandom().sample(alphabet, len(alphabet))
   
   def get_key(self):
-    return {'x_init':self.x_init, 'ctrl_param':self.ctrl_param, 'charmap':self.charmap}
+    return {'x0':self.x0, 'ctrl_param':self.ctrl_param, 'charmap':self.charmap}
       

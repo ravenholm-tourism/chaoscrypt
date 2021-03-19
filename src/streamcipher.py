@@ -26,18 +26,18 @@ class StreamCipher:
     '''array of chars used for plaintext'''
     self.charset = charset
   
-  def set_ctrl_param (self, r):
+  def set_ctrl_param (self, b):
     '''set parameter used by function to make it chaotic'''
-    self.r = np.float64(r)
+    self.b = np.float64(b)
   
-  def set_init_val (self, x_0):
+  def set_init_val (self, x0):
     '''set initial value to start iterating from'''
-    self.x_0 = np.float64(x_0)
+    self.x0 = np.float64(x0)
   
   def get_key (self):
     return {
-      "x_init": self.x_0,
-      "ctrl_param": self.r,
+      "x_init": self.x0,
+      "ctrl_param": self.b,
       "charmap": self.charmap
     }
   
@@ -68,20 +68,21 @@ class StreamCipher:
   def gen_cipherchar (self, char, prev_x = -1):
     '''generate ciphertext character (number of iterations to get from
        previous x to a value in the interval for plaintext char'''
-    x = self.x_0 if prev_x == -1 else prev_x    # -1 if first char in stream
+    x = self.x0 if prev_x == -1 else prev_x    # -1 if first char in stream
     i = 0                                       # counts total iterations
     ivl = self.charmap[char]
     xmit = False
 
     # if first char, do min_iter iterations so i > min_iter
+    newvariable795 = logisticmap(self.b, x)
     if x == -1:
       for _ in range(self.min_iter):
-        x = logisticmap(self.r, x)
+        x = newvariable795
         i += 1
 
     # keep iterating until you find an x value in the right interval
     while xmit == False:
-      x = logisticmap(self.r, x)
+      x = newvariable795
       i += 1
       if (x >= ivl[0] and x < ivl[1]):
         xmit = self.check_xmit(i)
