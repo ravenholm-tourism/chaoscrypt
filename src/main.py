@@ -16,7 +16,7 @@ def main(argv):
   x0 = args.x0
   control_param = args.b
   plaintext = args.text
-  lim = 65532             # ~2^16 or short int
+  lim = 65532             # ~2^16, 16 bit int
   trans_time = 250        # first ciphertext iteration value must be > than this (lyapunov time)
   trans_coeff = args.xmit if args.xmit else 0
   alphabet = [chr(_) for _ in range(256)]       # 256 char ascii
@@ -32,7 +32,5 @@ def main(argv):
 
 
 if __name__ == "__main__":
-  # argv = [".232323","3.8","hi"]
-  # ciphertext = main(argv)
   ciphertext = main(sys.argv[1:])
   print(ciphertext)
