@@ -1,4 +1,4 @@
-from src.chaosmaps import logisticmap
+from ..maps.onedim import logisticmap
 
 class PlainText:
   ivl = [.2, .8]

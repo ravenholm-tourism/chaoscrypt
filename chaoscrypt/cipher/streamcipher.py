@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.stats import truncnorm
-from src.chaosmaps import logisticmap
+from ..maps.onedim import logisticmap
 
 def map_tokens (tokens, invl_min, invl_max):
   '''maps tokens to intervals in the order they are stored in the tokens array'''

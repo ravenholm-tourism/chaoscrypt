@@ -1,5 +1,6 @@
-import src.streamcipher as sc
-import src.plaintext as p
+#!/home/shortt/github/base-chaoscrypt/chaoscrypt/env/bin/python
+from chaoscrypt.cipher.streamcipher import map_tokens, StreamCipher
+from chaoscrypt.cipher.plaintext import PlainText
 import sys
 import argparse
 
@@ -22,7 +23,7 @@ def main(argv):
   trans_coeff = args.xmit if args.xmit else 0
   alphabet = [chr(_) for _ in range(256)]       # 256 char ascii
 
-  streamcipher = sc.StreamCipher(trans_time, trans_coeff, lim)
+  streamcipher = StreamCipher(trans_time, trans_coeff, lim)
   streamcipher.set_ctrl_param(control_param)
   streamcipher.set_init_val(x0)
   streamcipher.set_charset(alphabet)
