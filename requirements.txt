@@ -84,7 +84,7 @@ precis-i18n==1.0.0
 prompt-toolkit==3.0.16
 protobuf==3.6.1
 psutil==5.5.1
-py==1.8.1
+py==1.10.0
 py-cpuinfo==5.0.0
 py3dns==3.2.1
 pyasn1==0.4.2
