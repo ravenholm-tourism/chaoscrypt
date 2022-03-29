@@ -72,7 +72,7 @@ oauthlib==3.1.0
 olefile==0.46
 onboard==1.4.1
 packaging==20.3
-paramiko==2.6.0
+paramiko==2.10.1
 parso==0.8.1
 pathspec==0.8.1
 pathtools==0.1.2
