@@ -1,4 +1,3 @@
-#!/home/shortt/github/base-chaoscrypt/chaoscrypt/env/bin/python
 from chaoscrypt.cipher.streamcipher import map_tokens, StreamCipher
 from chaoscrypt.cipher.plaintext import PlainText
 import sys
@@ -16,7 +15,7 @@ def main(argv):
   args = parser.parse_args(argv)
 
   x0 = args.x0
-  control_param = args.b
+  control_param = args.b if args.b else 3.78  # value needs to create a chaotic system
   plaintext = args.text
   lim = 65532             # ~2^16, 16 bit int
   trans_time = 250        # first ciphertext iteration value must be > than this (lyapunov time)
